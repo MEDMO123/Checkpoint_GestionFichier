@@ -35,16 +35,16 @@ class Calculatrice :
             '-': soustraction,
             '*':multiplication,
             '/': division,
-            '^':puissance,
-            '√':racine_carré,
-            'log':logarithm
+            #'^':puissance,
+            #'√':racine_carré,
+            # 'log':logarithm
         }
 
     def add_operation(self,symbole,fonction) :
         if symbole in self.operations:
             print("Cette operation est deja stockée")
         else :
-            self.operations['symbole']=fonction
+            self.operations[symbole]=fonction
 
     def calculate(self,num1,symbole,num2):       
         signe=self.operations[symbole]               
@@ -53,23 +53,19 @@ class Calculatrice :
               raise ValueError ("Saisie incorrecte vous devez saisir des nombres ")           
            else:   
                 if signe==logarithm or signe==racine_carré:          
-                    return signe(num1)     
+                    return signe(num1)    
                 else : 
                     return signe(num1,num2)                
         else : 
             print("Cette operation n'est pas disponible pour le moment")
 
-
-        
-    
-''' symbole=Calculatrice()
-symbole.add_operation('^',puissance)
-symbole.add_operation('√', racine_carré)
-symbole.add_operation('log', logarithm) '''
-
 #Programme
 
 Calculator=Calculatrice()
+Calculator.add_operation('^',puissance)
+Calculator.add_operation('√', racine_carré)
+Calculator.add_operation('log', logarithm) 
+
 run=True 
 while run==True:
     nb1=float(input("Veuillez entrer le premier nombre : "))
@@ -82,6 +78,7 @@ while run==True:
         res=Calculator.calculate(nb1,op,nb2)
         print(res)
     print('voulez vous continuer vos operations')
-    rep=input('Repondre par Y ou N ')
+    rep=input('Repondre par Y ou N  :')
     if rep=='N' :
+
         run=False
